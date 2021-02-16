@@ -45,7 +45,7 @@
 | item            | references | null: false, foreign_key: true |
 | shipping_info   | references | null: false, foreign_key: true |
 | card_number     | integer    | null: false                    |
-| expiration date | date       | null: false                    |
+| expiration_date | date       | null: false                    |
 | security_code   | integer    | null: false                    |
 
 ### Association
@@ -60,11 +60,8 @@
 | orders       | references | null: false, foreign_key: true |
 | post_cord    | integer    | null: false                    |
 | prefecture   | string     | null: false                    |
-| post_cord    | integer    | null: false                    |
-| prefecture   | string     | null: false                    |
 | municipality | string     | null: false                    |
 | address      | string     | null: false                    |
-| Building     | string     | null: false                    |
 | Building     | string     | null: false                    |
 | phone_number | integer    | null: false                    |
 
