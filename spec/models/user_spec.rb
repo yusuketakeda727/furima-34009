@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
       it 'nicknameと、email、password、password_confirmation、birthday、first_name、last_name、first_name_kana、last_name_kana、が存在すれば登録できる' do
         expect(@user).to be_valid
       end
-        it 'passwordとpassword_confirmationが6文字以上、英数混合であれば登録できる' do
+      it 'passwordとpassword_confirmationが6文字以上、英数混合であれば登録できる' do
         @user.password = 'aaa000'
         @user.password_confirmation = 'aaa000'
         expect(@user).to be_valid
@@ -78,22 +78,22 @@ RSpec.describe User, type: :model do
       it 'first_nameが半角だと登録できない' do
         @user.first_name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name is invalid"
+        expect(@user.errors.full_messages).to include 'First name is invalid'
       end
       it 'last_nameが半角だと登録できない' do
         @user.last_name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name is invalid"
+        expect(@user.errors.full_messages).to include 'Last name is invalid'
       end
       it 'first_name_kanaがカナでないと登録できない' do
         @user.first_name_kana = '名前'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name kana is invalid"
+        expect(@user.errors.full_messages).to include 'First name kana is invalid'
       end
       it 'last_name_kanaがカナでないと登録できない' do
         @user.last_name_kana = '苗字'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Last name kana is invalid"
+        expect(@user.errors.full_messages).to include 'Last name kana is invalid'
       end
     end
   end
