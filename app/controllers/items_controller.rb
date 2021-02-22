@@ -1,8 +1,17 @@
 class ItemsController < ApplicationController
-  def index
+
+  def show
+    
+  end
+
+  def new
+    @item = Item.new
+  end
+
+  def crate
+    
   end
 end
-
 
 private
 
