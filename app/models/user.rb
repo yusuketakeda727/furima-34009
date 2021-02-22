@@ -3,9 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
+  # has_many :items
+  # has_many :orders
+
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+  end
   validates :email, uniqueness: { case_sensitive: true }
-  validates :birthday, presence: true
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/ } do
@@ -16,7 +21,4 @@ class User < ApplicationRecord
     validates :first_name_kana
     validates :last_name_kana
   end
-
-  # has_many :items
-  # has_many :orders
 end
