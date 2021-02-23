@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model: @item, url: items_path, local: true do |f| %>
 
     <%# render 'shared/error_messages', model: f.object %>
 
@@ -93,7 +93,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -111,7 +111,6 @@
     </div>
     <%# /販売価格 %>
 
-    <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
@@ -129,7 +128,6 @@
         に同意したことになります。
       </p>
     </div>
-    <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "出品する" ,class:"sell-btn" %>
