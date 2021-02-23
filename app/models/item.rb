@@ -12,8 +12,8 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :text
-    validates :price
   end
+  validates :price,presence: true, numericality: { :greater_than_or_equal_to 300, less_than: 10000000 }
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :cost_id
