@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 40 }
   validates :text, presence: true, length: { maximum: 1000 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :cost_id

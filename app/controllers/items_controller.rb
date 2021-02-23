@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :redirect_root, except: :index
 
   def show
-    
   end
 
   def new
@@ -21,5 +21,6 @@ end
 private
 
 def item_params
-  params.require(:item).permit(:image, :title, :text, :category_id, :status_id, :cost_id, :prefecture_id, :response_id, :price).merge(user_id: current_user.id)
+  params.require(:item).permit(:image, :title, :text, :category_id, :status_id, :cost_id, :prefecture_id, :response_id,
+                               :price).merge(user_id: current_user.id)
 end
