@@ -9,10 +9,13 @@ class Item < ApplicationRecord
   # has_one :order
   has_one_attached :image
 
-  validates :image, presence: true
-  validates :title, presence: true, length: { maximum: 40 }
-  validates :text, presence: true, length: { maximum: 1000 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
+  with_options presence: true do
+    validates :image
+    validates :title, length: { maximum: 40 }
+    validates :text, length: { maximum: 1000 }
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
+  end
+
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :cost_id
