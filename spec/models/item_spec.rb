@@ -35,6 +35,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include 'Category must be other than 1'
       end
+      it 'status_idが１では登録できない' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Status must be other than 1'
+      end
       it 'cost_idが１では登録できない' do
         @item.cost_id = 1
         @item.valid?
@@ -81,7 +86,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Price is not a number'
       end
       it 'imageが空では登録できない' do
-        @item.image = ""
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
