@@ -49,16 +49,16 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :shipping_info
+- has_one :address
 
-## shipping_info table
+## address table
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
 | order         | references | null: false, foreign_key: true |
 | post_cord     | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
-| municipality  | string     | null: false                    |
+| city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building      | string     |                                |
 | phone_number  | string     | null: false                    |
