@@ -17,6 +17,10 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.building = ''
         expect(@order_address).to be_valid
       end
+      it 'phone_numberが10桁でも購入できる' do
+        @order_address.phone_number = '0123456789'
+        expect(@order_address).to be_valid
+      end
     end
     context '商品の購入できないとき' do
       it 'userと紐付いていなければ購入できない' do
@@ -67,12 +71,17 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_namberが全角数字だと購入できない' do
         @order_address.phone_number = '０８０１２３４１２３４'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include 'Phone number is invalid'
+        expect(@order_address.errors.full_messages).to include 'Phone number is not a number'
       end
       it 'phone_namberが11文字以上だと購入できない' do
         @order_address.phone_number = '080123412345'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include 'Phone number is invalid'
+        expect(@order_address.errors.full_messages).to include 'Phone number is too long (maximum is 11 characters)'
+      end
+      it 'phone_namberが半角英数飲みでないと購入できない' do
+        @order_address.phone_number = '0801234abcd'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include 'Phone number is not a number'
       end
     end
   end
