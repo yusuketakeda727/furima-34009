@@ -1,16 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :set_and_move, only:[:new, :create]
   def new
     @order_address = OrderAddress.new
-    @item = Item.find(params[:id])
-    redirect_to root_path if @item.order.present? || current_user == @item.user
   end
 
   def create
     @order_address = OrderAddress.new(order_params)
-    @item = Item.find(params[:format])
-    redirect_to root_path if @item.order.present? || current_user == @item.user
     if @order_address.valid?
       pay_item
       @order_address.save
@@ -35,6 +31,11 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_and_move
+    @item = Item.find(params[:id])
+    redirect_to root_path if @item.order.present? || current_user == @item.user
   end
 end
 
